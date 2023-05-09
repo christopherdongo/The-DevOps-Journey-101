@@ -103,8 +103,8 @@
             <div class="row it_works">
               <?php
 
-                        $link = mysqli_connect('172.20.1.101', 'ecomuser', 'ecompassword', 'ecomdb');
-
+                        $link = mysqli_connect('localhost', 'admin', 'password123', 'ecomdb');
+                        
                         if ($link) {
                         $res = mysqli_query($link, "select * from products;");
                         while ($row = mysqli_fetch_assoc($res)) { ?>
