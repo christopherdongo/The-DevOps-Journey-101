@@ -1,0 +1,25 @@
+version: '3.0'
+services:
+  wordpress:
+    container_name: frontend
+    image: roxsross12/guestbook
+    restart: always 
+    ports:
+      - 8080:5000
+    depends_on:
+      - redis
+    networks:
+      - guestbook_net
+
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+     - 6379:6379
+    networks:
+     - guestbook_net
+
+networks:
+  guestbook_net:
+    driver: bridge
