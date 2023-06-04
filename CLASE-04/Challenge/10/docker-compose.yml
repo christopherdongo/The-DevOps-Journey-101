@@ -1,0 +1,35 @@
+version: '3.0'
+services:
+  postgresql:
+    container_name: postgresql_container
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    networks:
+      - pg-network
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    depends_on:
+      - postgresql
+    ports:
+      - 8080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=secret123
+    restart: unless-stopped
+    networks:
+      - pg-network
+networks:
+  pg-network:
+volumes:
+  postgresql:

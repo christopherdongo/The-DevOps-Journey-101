@@ -1,0 +1,35 @@
+version: '3'
+services:
+    mariadb:
+      container_name: mariadb_container
+      image: mariadb:latest
+      restart: always
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+      ports:
+        - 3306:3306
+      expose:
+        - 3306
+      volumes:
+        - mariadb_data:/var/lib/mysql
+      networks:
+        - lamp_network
+
+    phpmyadmin:
+      container_name: phpmyadmin_container
+      image: phpmyadmin
+      restart: always
+      ports:
+        - 82:80
+      depends_on:
+        - mariadb
+      environment:
+        - PMA_HOST=mariadb
+        - PMA_PORT=3306 
+      networks:
+        - lamp_network
+
+volumes:
+  mariadb_data:
+networks:
+  lamp_network:

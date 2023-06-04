@@ -1,15 +1,15 @@
 version: '3.0'
 services:
-  frontend:
-    container_name: frontend
-    image: roxsross12/guestbook
+  webapp:
+    container_name: webapp
+    image: python-web:1.0.0
     restart: always 
     ports:
-      - 8080:5000
+      - 8080:80
     depends_on:
       - redis
     networks:
-      - guestbook_net
+      - 08_net
 
   redis:
     container_name: redis
@@ -18,8 +18,8 @@ services:
     ports:
      - 6379:6379
     networks:
-     - guestbook_net
+     - 08_net
 
 networks:
-  guestbook_net:
+  08_net:
     driver: bridge

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  service-flask-app:
+    hostname: service-flask-app
+    container_name: service-flask-app
+    image: cdongoh/python-flask
+    restart: always
+    ports:
+      - 8000:8000
+
+  service-consumer:
+    container_name: consumer
+    image: cdongoh/python-consumer
+    restart: always
+    environment:
+      - LOCAL=true
+      - PYTHONUNBUFFERED="1
+     
+     

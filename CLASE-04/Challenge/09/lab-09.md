@@ -42,3 +42,7 @@ Repositorio: https://github.com/wodby/docker4drupal
 ### Entrega:
     - Documentación de como solvento el proceso de instalación
     - print de pantalla con los servicios habilitados y funcionando.
+
+### Instalacion:
+se agrego {} a las variables de entorno dentro del archivo docker-compose.yml
+docker-compose up -d or make up

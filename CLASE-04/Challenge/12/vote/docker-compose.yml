@@ -1,0 +1,43 @@
+version: '3'
+services:
+   python-vote:
+     container_name: python_vote
+     image: python-vote:1.0.0
+     restart: always
+     ports:
+       - 8080:80
+     depends_on:
+       - redis
+     networks:
+       - python_vote
+
+   redis:
+     container_name: redis
+     image: redis
+     restart: always
+     ports:
+       - 6379:6379
+     networks:
+       - python_vote
+
+   db:
+     container_name: postgresql_container
+     image: postgres:13
+     restart: always
+     environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=postgres
+     ports:
+       - 5432:5432
+     expose:
+       - 5432
+     volumes:
+       - db:/var/lib/postgresql/data
+     networks:
+       - python_vote
+    
+networks:
+  python_vote:
+    driver: bridge
+volumes:
+  db:
