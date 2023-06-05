@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ks8web-deploy
+  labels:
+    app: ks8
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ks8
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: ks8
+        tier: frontend
+    spec:
+      containers:
+      - name: imagen-ks8
+        image: roxsross12/k8s_test_web:latest
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80
