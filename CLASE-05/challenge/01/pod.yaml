@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-myapp
+  labels:
+    name: myapp
+    tier: frontend
+spec:
+  containers:
+  - name: container-myapp
+    image: roxsross12/k8s_test_web:latest
+    resources:
+      limits:
+        memory: "68Mi"
+        cpu: "50m"
+    ports:
+      - containerPort: 80
