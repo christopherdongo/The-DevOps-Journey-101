@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -6,8 +5,10 @@ metadata:
   labels:
     app: ks8
     tier: frontend
+  annotations:
+    kubernetes.io/change-cause: "roxsross12/k8s_test_web:v1"
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: ks8
@@ -20,7 +21,7 @@ spec:
     spec:
       containers:
         - name: imagen-ks8
-          image: roxsross12/k8s_test_web:latest
+          image: roxsross12/k8s_test_web:v1
           resources:
             limits:
               memory: "64Mi"
