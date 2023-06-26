@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-flask-app
+  labels: 
+    app: service-flask
+    tier: backend 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: service-flask
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: service-flask
+        tier: backend
+    spec:
+      containers:
+      - name: imagen-flask-app
+        image: cdongoh/python-flask
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 8000
